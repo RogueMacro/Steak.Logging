@@ -2,4 +2,5 @@ FileVersion = 1
 
 [Project]
 Name = "Steak.Logging"
+TargetType = "BeefDynLib"
 StartupObject = "Steak.Logging.Program"

@@ -6,7 +6,7 @@ namespace Steak.Logging
 	{
 		public static String Format = "[%t] %n: %x";
 		public static ConsoleColor TraceColor = .White;
-		public static ConsoleColor DebugColor = .White;
+		public static ConsoleColor InfoColor = .White;
 		public static ConsoleColor WarningColor = .Yellow;
 		public static ConsoleColor ErrorColor = .Red;
 		public static ConsoleColor SuccessColor = .Green;
