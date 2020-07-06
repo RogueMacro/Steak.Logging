@@ -5,7 +5,7 @@ namespace Steak.Logging
 	public static class Formatting
 	{
 		public static String Format = "[%t] %n: %x";
-		public static ConsoleColor TraceColor = .White;
+		public static ConsoleColor TraceColor = .Gray;
 		public static ConsoleColor InfoColor = .White;
 		public static ConsoleColor WarningColor = .Yellow;
 		public static ConsoleColor ErrorColor = .Red;
