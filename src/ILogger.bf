@@ -14,16 +14,16 @@ namespace Steak.Logging
 		public this()
 		{
 			Name = "Log";
-			MinimumLogLevel = .Debug;
+			MinimumLogLevel = .Trace;
 		}
 
-		public this(String name, LogLevel level = .Debug)
+		public this(String name, LogLevel level = .Trace)
 		{
 			Name = name;
 			MinimumLogLevel = level;
 		}
 
-		public this(String name, String format, LogLevel level = .Debug)
+		public this(String name, String format, LogLevel level = .Trace)
 		{
 			Name = name;
 			CustomFormat = format;
@@ -40,7 +40,7 @@ namespace Steak.Logging
 		public abstract void Log(LogLevel level, StringView str, params Object[] args);
 
 		public void Trace(StringView format, params Object[] args) => Log(.Trace, format, params args);
-		public void Debug(StringView format, params Object[] args) => Log(.Debug, format, params args);
+		public void Info(StringView format, params Object[] args) => Log(.Info, format, params args);
 		public void Warning(StringView format, params Object[] args) => Log(.Warning, format, params args);
 		public void Error(StringView format, params Object[] args) => Log(.Error, format, params args);
 		public void Success(StringView format, params Object[] args) => Log(.Success, format, params args);

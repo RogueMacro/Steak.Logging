@@ -5,9 +5,9 @@ namespace Steak.Logging
 	enum LogLevel
 	{
 		case Trace;
-		case Debug;
-		case Success;
+		case Info;
 		case Warning;
+		case Success;
 		case Error;
 		case Off;
 	}
@@ -22,12 +22,12 @@ namespace Steak.Logging
 				{
 				case .Trace:
  					return Formatting.TraceColor;
-				case .Debug:
-					return Formatting.DebugColor;
-				case .Success:
-					return Formatting.SuccessColor;
+				case .Info:
+					return Formatting.InfoColor;
 				case .Warning:
 					return Formatting.WarningColor;
+				case .Success:
+					return Formatting.SuccessColor;
 				case .Error:
 					return Formatting.ErrorColor;
 				default:

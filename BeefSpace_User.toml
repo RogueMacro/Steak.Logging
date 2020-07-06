@@ -1,11 +1,11 @@
 FileVersion = 1
 LastConfig = "Debug"
 LastPlatform = "Win64"
-RecentFilesList = ["c:\\dev\\Beef\\Steak.Logging\\src\\Logger.bf", "c:\\dev\\Beef\\Steak.Logging\\src\\ILogger.bf", "c:\\dev\\Beef\\Steak.Logging\\src\\Program.bf", "c:\\dev\\Beef\\Steak.Logging\\src\\FileLogger.bf", "c:\\dev\\Beef\\SteakLogger\\src\\SteakLogger.pkg", "c:\\dev\\Beef\\SteakLogger\\Testing\\src\\Program.bf"]
+RecentFilesList = ["c:\\dev\\Beef\\Steak.Logging\\src\\FileLogger.bf", "c:\\dev\\Beef\\Steak.Logging\\src\\Program.bf", "c:\\dev\\Beef\\Steak.Logging\\src\\Logger.bf", "c:\\dev\\Beef\\Steak.Logging\\src\\ILogger.bf", "c:\\dev\\Beef\\SteakLogger\\src\\SteakLogger.pkg", "c:\\dev\\Beef\\SteakLogger\\Testing\\src\\Program.bf"]
 
 [MainWindow]
 X = 64
-Y = 64
+Y = 16
 Width = 1200
 Height = 1024
 ShowKind = "Maximized"
@@ -29,7 +29,7 @@ Type = "TabbedView"
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
 Active = true
 TabLabel = "Workspace"
-TabWidth = 115.0
+TabWidth = 116.3265
 Type = "ProjectPanel"
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets]]
@@ -42,8 +42,9 @@ DefaultDocumentsTabbedView = true
 Type = "TabbedView"
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
+Active = true
 TabLabel = "FileLogger.bf"
-TabWidth = 115.0
+TabWidth = 106.5306
 Type = "SourceViewPanel"
 FilePath = "c:\\dev\\Beef\\Steak.Logging\\src\\FileLogger.bf"
 CursorPos = 287
@@ -51,27 +52,26 @@ ProjectName = "Steak.Logging"
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
 TabLabel = "ILogger.bf"
-TabWidth = 99.0
+TabWidth = 90.20408
 Type = "SourceViewPanel"
 FilePath = "c:\\dev\\Beef\\Steak.Logging\\src\\ILogger.bf"
 CursorPos = 188
 ProjectName = "Steak.Logging"
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
-Active = true
 TabLabel = "Logger.bf"
-TabWidth = 96.0
+TabWidth = 87.14286
 Type = "SourceViewPanel"
 FilePath = "c:\\dev\\Beef\\Steak.Logging\\src\\Logger.bf"
-CursorPos = 74
+CursorPos = 643
 ProjectName = "Steak.Logging"
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
 TabLabel = "Program.bf"
-TabWidth = 106.0
+TabWidth = 97.34694
 Type = "SourceViewPanel"
 FilePath = "c:\\dev\\Beef\\Steak.Logging\\src\\Program.bf"
-CursorPos = 108
+CursorPos = 157
 ProjectName = "Steak.Logging"
 
 [[MainDockingFrame.DockedWidgets]]
@@ -89,25 +89,25 @@ Type = "TabbedView"
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
 Active = true
 TabLabel = "Errors"
-TabWidth = 86.0
+TabWidth = 86.7347
 Type = "ErrorsPanel"
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
 TabLabel = "Memory"
-TabWidth = 99.0
+TabWidth = 100.0
 Type = "MemoryPanel"
 AutoResize = "Auto_Mul8"
 RequestedWidth = 300.0
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
 TabLabel = "Watch"
-TabWidth = 86.0
+TabWidth = 86.7347
 Type = "WatchPanel"
 Columns = [{Width = 200.0}, {Width = 200.0}, {Width = 200.0}]
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
 TabLabel = "Auto"
-TabWidth = 77.0
+TabWidth = 77.55102
 Type = "AutoWatchPanel"
 Columns = [{Width = 200.0}, {Width = 200.0}, {Width = 200.0}]
 
@@ -119,25 +119,21 @@ Type = "TabbedView"
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
 TabLabel = "Threads"
-TabWidth = 97.0
+TabWidth = 97.95918
 Type = "ThreadPanel"
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
 TabLabel = "Call Stack"
-TabWidth = 105.0
+TabWidth = 106.1224
 Type = "CallStackPanel"
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
 TabLabel = "Immediate"
-TabWidth = 111.0
+TabWidth = 112.2449
 Type = "ImmediatePanel"
 
 [[MainDockingFrame.DockedWidgets.DockedWidgets.Tabs]]
 Active = true
 TabLabel = "Output"
-TabWidth = 90.0
+TabWidth = 90.81632
 Type = "OutputPanel"
-
-[DebuggerDisplayTypes.""]
-IntDisplayType = "Default"
-MmDisplayType = "Default"

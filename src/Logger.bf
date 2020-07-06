@@ -7,10 +7,10 @@ namespace Steak.Logging
 		public this() : base()
 		{}
 
-		public this(String name, LogLevel level = .Debug) : base(name, level)
+		public this(String name, LogLevel level = .Trace) : base(name, level)
 		{}
 
-		public this(String name, String format, LogLevel level = .Debug) : base(name, format, level)
+		public this(String name, String format, LogLevel level = .Trace) : base(name, format, level)
 		{}
 
 		public override void Log(LogLevel level, StringView str, params Object[] args)
