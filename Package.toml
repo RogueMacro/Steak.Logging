@@ -1,0 +1,5 @@
+Version = "0.1.0"
+
+[Dependencies]
+GLFW = "https://github.com/glfw/glfw"
+ImGui = "https://github.com/imgui/imgui"
