@@ -2,18 +2,21 @@ using System;
 
 namespace Steak.Logging
 {
+	[AllowDuplicates]
 	enum LogLevel
 	{
+		case None;
 		case Trace;
 		case Info;
 		case Warning;
 		case Success;
 		case Error;
-		case Off;
 	}
 
 	extension LogLevel
 	{
+		public static Self Default = .Info;
+
 		public ConsoleColor Color
 		{
 			get
@@ -21,15 +24,15 @@ namespace Steak.Logging
 				switch (this)
 				{
 				case .Trace:
- 					return Formatting.TraceColor;
+ 					return Log.TraceColor;
 				case .Info:
-					return Formatting.InfoColor;
+					return Log.InfoColor;
 				case .Warning:
-					return Formatting.WarningColor;
+					return Log.WarningColor;
 				case .Success:
-					return Formatting.SuccessColor;
+					return Log.SuccessColor;
 				case .Error:
-					return Formatting.ErrorColor;
+					return Log.ErrorColor;
 				default:
 					return .White;
 				}

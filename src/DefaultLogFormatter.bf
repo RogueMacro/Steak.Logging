@@ -2,22 +2,13 @@ using System;
 
 namespace Steak.Logging
 {
-	public static class Formatting
+	public class DefaultLogFormatter : ILogFormatter
 	{
-		public static String Format = "[%t] %n: %x";
-		public static ConsoleColor TraceColor = .Gray;
-		public static ConsoleColor InfoColor = .White;
-		public static ConsoleColor WarningColor = .Yellow;
-		public static ConsoleColor ErrorColor = .Red;
-		public static ConsoleColor SuccessColor = .Green;
-
-		public static void Format(ILogger logger, LogLevel level, String output, StringView str, params Object[] args)
+		public void Format(BaseLogger logger, LogLevel level, StringView format, StringView message, String output)
 		{
-			StringView format = logger.UseCustomFormat ? logger.CustomFormat : Format;
-
 			for (int i = 0; i < format.Length; ++i)
 			{
-				if (format[i] == '%' && i+1 < format.Length && format[i+1] != '%')
+				if (format[i] == '%' && i+1 < format.Length)
 				{
 					switch (format[i+1])
 					{
@@ -52,15 +43,15 @@ namespace Steak.Logging
 						output.Append(logger.Name);
 						break;
 					case 'x':
-						output.AppendF(str, params args);
+						output.Append(message);
 						break;
 					case 'l':
 						output.AppendF("{}", level);
 					default:
-						--i;
+						i--;
 					}
 
-					++i;
+					i++;
 				}
 				else
 				{
