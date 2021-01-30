@@ -1,5 +1,0 @@
-FileVersion = 1
-Projects = {"Steak.Logging" = {Path = "."}, Testing = {Path = "Testing"}}
-
-[Workspace]
-StartupProject = "Testing"
