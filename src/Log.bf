@@ -28,6 +28,8 @@ namespace Steak.Logging
 	-----------------------------------
 	| %n    | Logger name  | MyLogger |
 	-----------------------------------
+	| %u    | Module name  | TestLib  |
+	-----------------------------------
 	| %x    | Message      |          |
 	-----------------------------------
 	| %l    | Log level    | Warning  |
@@ -45,9 +47,15 @@ namespace Steak.Logging
 
 		private static List<LoggerRegistration> Loggers = new .() ~ DeleteContainerAndItems!(_);
 
-		public static void InitConsoleLog(LogLevel level = .Info)
+		private static bool mIsInitialized = false;
+
+		public static void InitConsoleLog(LogLevel level = .Default)
 		{
-			Loggers.Add(new .(new ConsoleLogger("Log", level), true));
+			if (mIsInitialized)
+				return;
+
+			Loggers.Add(new .(new ConsoleLogger("Log", "", level), true));
+			mIsInitialized = true;
 		}
 
 		public static void AddLogger(ILogger logger, bool ownsLogger)

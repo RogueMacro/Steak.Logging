@@ -4,9 +4,7 @@ namespace Steak.Logging
 {
 	public class ConsoleLogger : StreamLogger
 	{
-		public this() : base(Console.Out) {}
-		public this(StringView name, LogLevel level = .Trace) : base(Console.Out, name, level) {}
-		public this(StringView name, StringView format, LogLevel level = .Trace) : base(Console.Out, name, format, level) {}
+		public this(StringView name = "", StringView format = "", LogLevel level = .Default, String moduleName = Compiler.CallerProject) : base(Console.Out, name, format, level, false, moduleName) {}
 
 		protected override void Log(ConsoleColor color, StringView message)
 		{

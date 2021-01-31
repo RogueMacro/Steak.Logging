@@ -8,19 +8,7 @@ namespace Steak.Logging
 		public StreamWriter Out ~ if (mOwnsStreamWriter) delete _;
 		private bool mOwnsStreamWriter;
 
-		public this(StreamWriter _out, LogLevel level = .Default, bool ownsStreamWriter = false) : base(level, null)
-		{
-			Out = _out;
-			mOwnsStreamWriter = ownsStreamWriter;
-		}
-
-		public this(StreamWriter _out, StringView name, LogLevel level = .Default, bool ownsStreamWriter = false) : base(name, level, null)
-		{
-			Out = _out;
-			mOwnsStreamWriter = ownsStreamWriter;
-		}
-
-		public this(StreamWriter _out, StringView name, StringView format, LogLevel level = .Default, bool ownsStreamWriter = false) : base(name, format, level, null)
+		public this(StreamWriter _out, StringView name = "", StringView format = "", LogLevel level = .Default, bool ownsStreamWriter = false, String moduleName = Compiler.CallerProject) : base(name, format, level, null, moduleName)
 		{
 			Out = _out;
 			mOwnsStreamWriter = ownsStreamWriter;

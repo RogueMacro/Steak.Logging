@@ -11,37 +11,22 @@ namespace Steak.Logging
 		private bool mOwnsFormatter;
 		private ILogFormatter mFormatter = null ~ if (mOwnsFormatter) delete _;
 
-		public this (LogLevel level)
-		{
-			Name.Set("Log");
-			MinimumLevel = .Info;
-			mFormatter = new DefaultLogFormatter();
-			mOwnsFormatter = true;
-		}
+		private LoggingModule mModule = null;
 
-		public this(LogLevel level, ILogFormatter formatter)
+		public this(StringView name, StringView format, LogLevel level, ILogFormatter formatter, String moduleName)
 		{
-			Name.Set("Log");
-			MinimumLevel = .Info;
-			mFormatter = formatter == null ? new DefaultLogFormatter() : formatter;
-			mOwnsFormatter = formatter == null;
-		}
-
-		public this(StringView name, LogLevel level, ILogFormatter formatter)
-		{
-			Name.Set(name);
-			MinimumLevel = level;
-			mFormatter = formatter == null ? new DefaultLogFormatter() : formatter;
-			mOwnsFormatter = formatter == null;
-		}
-
-		public this(StringView name, StringView format, LogLevel level, ILogFormatter formatter)
-		{
-			Name.Set(name);
+			mModule = LoggingModule.Get(moduleName)..RegisterLogger(this);
+			Name.Set(name.IsEmpty ? mModule.Name : name);
 			Format.Set(format);
 			MinimumLevel = level;
 			mFormatter = formatter == null ? new DefaultLogFormatter() : formatter;
 			mOwnsFormatter = formatter == null;
+		}
+
+		public ~this()
+		{
+			if (mModule != null)
+				mModule.RemoveLogger(this);
 		}
 
 		public void SetFormatter(ILogFormatter formatter)
@@ -70,8 +55,11 @@ namespace Steak.Logging
 			Format.Clear();
 		}
 
-		public virtual void Log(LogLevel level, StringView format, params Object[] args)
+		public void Log(LogLevel level, StringView format, params Object[] args)
 		{
+			if (!mModule.IsEnabled)
+				return;
+
 			if (level < MinimumLevel)
 				return;
 
@@ -80,17 +68,16 @@ namespace Steak.Logging
 
 			String formattedMessage = scope .();
 			mFormatter.Format(this, level, Format.IsEmpty ? Log.DefaultFormat : Format, message, formattedMessage);
-
 			Log(level.Color, formattedMessage);
 		}
 
 		protected abstract void Log(ConsoleColor color, StringView message);
 
-		[Inline] public virtual void Trace(StringView format, params Object[] args) => Log(.Trace, format, params args);
-		[Inline] public virtual void Info(StringView format, params Object[] args) => Log(.Info, format, params args);
-		[Inline] public virtual void Warning(StringView format, params Object[] args) => Log(.Warning, format, params args);
-		[Inline] public virtual void Error(StringView format, params Object[] args) => Log(.Error, format, params args);
-		[Inline] public virtual void Success(StringView format, params Object[] args) => Log(.Success, format, params args);
+		[Inline] public void Trace(StringView format, params Object[] args) => Log(.Trace, format, params args);
+		[Inline] public void Info(StringView format, params Object[] args) => Log(.Info, format, params args);
+		[Inline] public void Warning(StringView format, params Object[] args) => Log(.Warning, format, params args);
+		[Inline] public void Error(StringView format, params Object[] args) => Log(.Error, format, params args);
+		[Inline] public void Success(StringView format, params Object[] args) => Log(.Success, format, params args);
 
 		public void FatalErrorF(StringView format, params Object[] args)
 		{
