@@ -5,18 +5,16 @@ namespace Steak.Logging
 	[AllowDuplicates]
 	enum LogLevel
 	{
-		case None;
 		case Trace;
 		case Info;
 		case Warning;
 		case Success;
 		case Error;
+		case Default = Info;
 	}
 
 	extension LogLevel
 	{
-		public static Self Default = .Info;
-
 		public ConsoleColor Color
 		{
 			get

@@ -13,6 +13,7 @@ namespace Steak.Logging
 
 		private LoggingModule mModule = null;
 
+		/// moduleName param will be removed when params mixins come and allow Caller* calls
 		public this(StringView name, StringView format, LogLevel level, ILogFormatter formatter, String moduleName)
 		{
 			mModule = LoggingModule.Get(moduleName)..RegisterLogger(this);
@@ -29,11 +30,11 @@ namespace Steak.Logging
 				mModule.RemoveLogger(this);
 		}
 
-		public void SetFormatter(ILogFormatter formatter)
+		public void SetFormatter(ILogFormatter formatter, bool ownsFormatter = false)
 		{
 			if (mOwnsFormatter)
 				delete mFormatter;
-			mOwnsFormatter = false;
+			mOwnsFormatter = ownsFormatter;
 			mFormatter = formatter;
 		}
 
@@ -55,7 +56,7 @@ namespace Steak.Logging
 			Format.Clear();
 		}
 
-		public void Log(LogLevel level, StringView format, params Object[] args)
+		public void Log(LogLevel level, StringView fmt, params Object[] args)
 		{
 			if (!mModule.IsEnabled)
 				return;
@@ -64,10 +65,11 @@ namespace Steak.Logging
 				return;
 
 			String message = scope .();
-			message.AppendF(format, params args);
+			message.AppendF(fmt, params args);
 
+			ILogFormatter formatter = mModule.UseFormatter ? mModule.[Friend]mFormatter : mFormatter;
 			String formattedMessage = scope .();
-			mFormatter.Format(this, level, Format.IsEmpty ? Log.DefaultFormat : Format, message, formattedMessage);
+			formatter.Format(this, level, mModule.Format.IsEmpty ? (Format.IsEmpty ? Log.DefaultFormat : Format) : mModule.Format, message, formattedMessage);
 			Log(level.Color, formattedMessage);
 		}
 
