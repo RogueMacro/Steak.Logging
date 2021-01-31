@@ -75,29 +75,47 @@ namespace Steak.Logging
 
 		public static readonly String DefaultFormat = new String("[%t] [%l] %x") ~ delete _;
 
-		private static List<LoggerRegistration> Loggers = new .() ~ DeleteContainerAndItems!(_);
+		/*private static List<LoggerRegistration> mLoggerRegistrations = new .() ~ DeleteContainerAndItems!(_);
+		private static List<String> mMutedModules = new .() ~ DeleteContainerAndItems!(_);
 
 		private static bool mIsInitialized = false;
 
-		public static void InitConsoleLog(LogLevel level = .Default)
+		public static void MuteModule(StringView module)
+		{
+			mMutedModules.Add(new .(module));
+		}
+
+		public static void UnmuteModule(StringView module)
+		{
+			if (mMutedModules.GetAndRemove(scope String(module)) case .Ok(let str))
+				delete str;
+		}
+
+		public static void InitConsoleLog(LogLevel level = .Default, String module = Compiler.CallerProject)
 		{
 			if (mIsInitialized)
 				return;
 
-			Loggers.Add(new .(new ConsoleLogger("Log", "", level), true));
+			mLoggerRegistrations.Add(new .(new ConsoleLogger("Log", "", level, module), true));
 			mIsInitialized = true;
 		}
 
 		public static void AddLogger(ILogger logger, bool ownsLogger)
 		{
-			Loggers.Add(new .(logger, ownsLogger));
+			mLoggerRegistrations.Add(new .(logger, ownsLogger));
 		}
 
 		public static void Log(LogLevel level, StringView format, params Object[] args)
 		{
-			for (var logger in Loggers)
-				logger.Logger.Log(level, format, args);
-		}
+			for (var registration in mLoggerRegistrations)
+			{
+				var logger = registration.Logger;
+				if (let b = logger as BaseLogger && mMutedModules.Contains(scope .(b.[Friend]mModule.Name)))
+					continue;
+
+				registration.Logger.Log(level, format, args);
+			}
+		}*/
 
 		public static void FatalErrorF(StringView format, params Object[] args)
 		{
@@ -111,7 +129,7 @@ namespace Steak.Logging
 			Runtime.FatalError(message, CallerFilePath, CallerLineNum);
 		}
 
-		[Inline] public static void Trace(StringView format, params Object[] args) => Log(.Trace, format, params args);
+		/*[Inline] public static void Trace(StringView format, params Object[] args) => Log(.Trace, format, params args);
 		[Inline] public static void Info(StringView format, params Object[] args) => Log(.Info, format, params args);
 		[Inline] public static void Warning(StringView format, params Object[] args) => Log(.Warning, format, params args);
 		[Inline] public static void Error(StringView format, params Object[] args) => Log(.Error, format, params args);
@@ -128,6 +146,6 @@ namespace Steak.Logging
 				Logger = logger;
 				mOwnsLogger = ownsLogger;
 			}
-		}
+		}*/
 	}
 }
