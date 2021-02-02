@@ -13,6 +13,8 @@ namespace Steak.Logging
 
 		private LoggingModule mModule = null;
 
+		public bool IsEnabled = true;
+
 		/// moduleName param will be removed when params mixins come and allow Caller* calls
 		public this(StringView name, StringView format, LogLevel level, ILogFormatter formatter, String moduleName)
 		{
@@ -58,10 +60,7 @@ namespace Steak.Logging
 
 		public void Log(LogLevel level, StringView fmt, params Object[] args)
 		{
-			if (!mModule.IsEnabled)
-				return;
-
-			if (level < MinimumLevel)
+			if (!mModule.IsEnabled || !IsEnabled || level < MinimumLevel)
 				return;
 
 			String message = scope .();
