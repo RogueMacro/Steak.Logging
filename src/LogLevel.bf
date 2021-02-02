@@ -8,8 +8,8 @@ namespace Steak.Logging
 		case Trace;
 		case Info;
 		case Warning;
-		case Success;
 		case Error;
+		case Success;
 		case Default = Info;
 	}
 
@@ -31,8 +31,6 @@ namespace Steak.Logging
 					return Log.SuccessColor;
 				case .Error:
 					return Log.ErrorColor;
-				default:
-					return .White;
 				}
 			}
 		}
